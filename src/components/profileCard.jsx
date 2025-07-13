@@ -1,4 +1,4 @@
-const ProfileCard = ({nama, job, imageUrl}) =>{
+const ProfileCard = ({nama, job, imageUrl}) => {
     return (
         <div>
             <img src={imageUrl} alt={nama} />
