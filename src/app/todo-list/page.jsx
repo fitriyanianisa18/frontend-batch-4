@@ -39,12 +39,33 @@ export default function Home() {
     ))
   }
 
+  const hasTodos = todos.length > 0
+
+  const deleteTodo = (id) => {
+    setTodos(todos.filter(todo => todo.id !== id))
+  }
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-center p-6 bg-gray-100">
       <div className="w-full max-w-md space-y-4">
         <h1 className="text-2xl font-bold text-center">My Todo List</h1>
         <TodoInput input={input} setInput={setInput} addTodo={addTodo} />
-        <TodoList todos={todos} toggleDone={toggleDone} />
+
+        {/* 1. if-else */}
+          {/* {(() => {
+            if (!hasTodos) {
+              return <p className='text-center text-gray-500'>Task is empty. Please create a task.</p>
+            } else {
+              return <TodoList todos={todos} toggleDone={toggleDone} deleteTodo={deleteTodo}/>;
+            }
+          })()} */}
+          
+          {/* 2. Ternary Operator */}
+          {/* {hasTodos ? <TodoList todos={todos} toggleDone={toggleDone} deleteTodo={deleteTodo}/> : <p className='text-center text-gray-500'>Task is empty. Please create a task.</p>} */}
+
+          {/* 3. Logical AND (&&) */}
+          {hasTodos && <TodoList todos={todos} toggleDone={toggleDone} deleteTodo={deleteTodo}/>}
+          {!hasTodos && <p className='text-center text-gray-500'>Task is empty. Please create a task.</p>}
       </div>
     </main>
   )
