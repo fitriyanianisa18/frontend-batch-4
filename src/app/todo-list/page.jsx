@@ -40,10 +40,18 @@ export default function Home() {
   }
 
   const hasTodos = todos.length > 0
+  const isLanguageIndonesian = false
 
   const deleteTodo = (id) => {
     setTodos(todos.filter(todo => todo.id !== id))
   }
+
+  // let list 
+  //   if (!hasTodos) {
+  //   list = <p className='text-center text-gray-500'>Task is empty. Please create a task.</p>;
+  //   } else {
+  //   list = <TodoList todos={todos} toggleDone={toggleDone} deleteTodo={deleteTodo}/>;
+  //   }
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-center p-6 bg-gray-100">
@@ -61,11 +69,22 @@ export default function Home() {
           })()} */}
           
           {/* 2. Ternary Operator */}
-          {/* {hasTodos ? <TodoList todos={todos} toggleDone={toggleDone} deleteTodo={deleteTodo}/> : <p className='text-center text-gray-500'>Task is empty. Please create a task.</p>} */}
+          {/* 2 kondisi */}
+          {/* {hasTodos ? <TodoList todos={todos} toggleDone={toggleDone} deleteTodo={deleteTodo}/> : <p className='text-center text-gray-500'>Task is empty. Please create a task.</p>}       */}
+          {/* 3 kondisi */}
+          {hasTodos ? (
+          <TodoList todos={todos} toggleDone={toggleDone} deleteTodo={deleteTodo} />
+            ) : isLanguageIndonesian ? (
+          <p className="text-center text-gray-500">Task kosong, silahkan buat Task baru.</p>
+            ) : (
+          <p className="text-center text-gray-500">Task is empty. Please create a task</p>
+          )}
 
           {/* 3. Logical AND (&&) */}
-          {hasTodos && <TodoList todos={todos} toggleDone={toggleDone} deleteTodo={deleteTodo}/>}
-          {!hasTodos && <p className='text-center text-gray-500'>Task is empty. Please create a task.</p>}
+          {/* {hasTodos && <TodoList todos={todos} toggleDone={toggleDone} deleteTodo={deleteTodo}/>}
+          {!hasTodos && <p className='text-center text-gray-500'>Task is empty. Please create a task.</p>} */}
+
+          {/* {list} */}
       </div>
     </main>
   )
