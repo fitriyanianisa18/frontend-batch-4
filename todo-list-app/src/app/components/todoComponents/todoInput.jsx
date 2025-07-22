@@ -1,8 +1,27 @@
 "use client"
 
+import {useState} from 'react'
 
+export default function TodoInput({todos, setTodos}) { //TodoInput menerima props/parameter
+    const [input, setInput] = useState("")
 
-export default function TodoInput({input, setInput, addTodo}) { //TodoInput menerima props/parameter
+        const addTodo = () => {
+    if (!input.trim()) {
+      console.log("Input kosong, tidak ada yang ditambahkan")
+      alert("Input kosong, tidak ada yang ditambahkan")
+      return;
+    }
+
+    const dataBaru = {
+      id: Date.now(),
+      text: input,
+      done: false,
+    }
+
+    setTodos([...todos, dataBaru])
+    setInput("")
+  }
+            
     return (
         <div className="flex gap-2"> 
             <input 

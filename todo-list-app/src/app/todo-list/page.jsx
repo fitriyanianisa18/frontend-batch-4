@@ -7,7 +7,7 @@ import TodoList from '../components/todoList'
 
 export default function Todo_Page() {
     // deklarasi state
-    const [input, setInput] = useState("")
+    // const [input, setInput] = useState("")
     const [todos, setTodos] = useState([])
 
     //saat mounting
@@ -23,22 +23,22 @@ export default function Todo_Page() {
         localStorage.setItem("todos", JSON.stringify(todos))
     }, [todos])
 
-    const addTodo = () => {
-        if (!input.trim()) {
-            console.log("Input kosong, tidak ada yang ditambahkan")
-            alert("Input kosong, tidak ada yang ditambahkan")
-        return 
-        }
+    // const addTodo = () => {
+    //     if (!input.trim()) {
+    //         console.log("Input kosong, tidak ada yang ditambahkan")
+    //         alert("Input kosong, tidak ada yang ditambahkan")
+    //     return 
+    //     }
 
-        const dataBaru = {
-            id: Date.now(),
-            text: input,
-            done: false
-        }
+    //     const dataBaru = {
+    //         id: Date.now(),
+    //         text: input,
+    //         done: false
+    //     }
 
-        setTodos([...todos, dataBaru]) 
-        setInput("") 
-    }
+    //     setTodos([...todos, dataBaru]) 
+    //     setInput("") 
+    // }
 
     return (
     <main className ="flex min-h-screen flex-col items-center justify-center p-6 bg-gray-200"> 
@@ -48,7 +48,7 @@ export default function Todo_Page() {
 
             {/* props/parameter = u/ menerima data fungsi butuh parameter */}
             {/* TodoInput mengirim props/argumen, diawali huruf besar berarti component */}
-            <TodoInput input={input} setInput={setInput} addTodo={addTodo}/>
+             <TodoInput todos={todos} setTodos={setTodos}/>
 
             {/* TodoList mengirim props todos berupa variable todos */}
             <TodoList todos={todos}/>
