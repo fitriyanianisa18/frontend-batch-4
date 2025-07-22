@@ -1,4 +1,10 @@
-export default function TodoItem({ todo, toggleDone, deleteTodo, index}) {
+"use client"
+
+import {useTodos} from '@/context/todoContext'
+
+export default function TodoItem({ todo, index}) {
+  const {toggleDone, deleteTodo} = useTodos()
+
   return (
     <div className="flex items-center justify-between bg-white rounded p-3 shadow-sm">
       <span onClick={() => toggleDone(todo.id)} className={`px-4 py-2 rounded cursor-pointer ${

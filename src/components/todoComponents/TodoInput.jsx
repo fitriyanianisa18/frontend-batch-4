@@ -1,4 +1,10 @@
-export default function TodoInput({ input, setInput, addTodo }) {
+"use client"
+
+import {useTodos} from '@/context/todoContext'
+
+export default function TodoInput() {
+  const {input, setInput, addTodo} = useTodos()
+
   const handleChange = (e) => {
     console.log('Change', e.target.value)
     setInput(e.target.value)
@@ -7,7 +13,7 @@ export default function TodoInput({ input, setInput, addTodo }) {
   const handleSubmit = (e) => {
     e.preventDefault()
     console.log("Input is submitted")
-    // addTodo()
+    addTodo()
   }
   return (
     <form onSubmit={handleSubmit} className="flex gap-2">
