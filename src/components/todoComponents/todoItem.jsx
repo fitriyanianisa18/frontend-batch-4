@@ -1,13 +1,10 @@
 "use client"
 
-import {useTodos} from '@/context/todoContext'
-
-export default function TodoItem({ todo, index}) {
-  const {dispatch} = useTodos()
+export default function TodoItem({ todo, index, onDone, onDelete}) {
 
   return (
     <div className="flex items-center justify-between bg-white rounded p-3 shadow-sm">
-      <span onClick={() => dispatch ({type: "TOGGLE_DONE", payload: todo.id})} 
+      <span onClick={() => onDone (todo.id)} 
       className={`px-4 py-2 rounded cursor-pointer ${
         todo.done
           ? 'bg-green-400 text-gray-500 line-through'
@@ -15,7 +12,7 @@ export default function TodoItem({ todo, index}) {
       }`}>
        {`${index}. ${todo.text}`}
       </span>
-      <button onClick={() => dispatch ({type: "DELETE_TODO", payload: todo.id})} 
+      <button onClick={() => onDelete (todo.id)} 
       className="ml-3 text-red-400 hover: text-red-700 font-bold">
         &times;
       </button>
