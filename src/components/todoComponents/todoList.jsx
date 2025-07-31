@@ -13,11 +13,11 @@ export default function TodoList() {
 	}, [state.todos])
 
 	const handleDone = useCallback((id) => {
-		dispatch ({type: "TOGGLE_DONE", payload: todo.id})
+		dispatch ({type: "TOGGLE_DONE", payload: id})
 	}, [dispatch])
 
 	const handleDelete = useCallback((id) => {
- 		dispatch ({type: "DELETE_TODO", payload: todo.id})
+ 		dispatch ({type: "DELETE_TODO", payload: id})
 	}, [dispatch])
 
 	const hasTodos = state.todos.length > 0
