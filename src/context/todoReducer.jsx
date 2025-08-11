@@ -2,7 +2,8 @@
 const initialState = {
   todos: [], 
   input: "",
-  loading: true
+  loading: true,
+  error: null
 }
 
 // fungsi reducer dari todo untuk mengubah state berdasarkan action
@@ -11,28 +12,21 @@ const initialState = {
 function todoReducer(state, action) {
   switch (action.type) {
     case "SET_TODOS":
-      return {...state, todos: action.payload};
+      return {...state, todos: action.payload, loading: false};
   
     case "SET_INPUT":
       return {...state, input: action.payload}
 
     case "ADD_TODO":
-      if (!state.input.trim()) {
-        alert("Tidak ada task yang ditambahkan")
-      return state
-      }
       return {
         ...state,
-        todos: [
-          ...state.todos, {id: Date.now(), text: state.input, done: false}
-        ],
-        input: ""
+        todos: [...state.todos, action.payload],
       }
 
       case "TOGGLE_DONE" :
         return {
           ...state,
-          todos: state.todos.map(todo => todo.id === action.payload ? {...todo, done: !todo.done} : todo)
+          todos: state.todos.map(todo => todo.id === action.payload ? action.payload : todo)
         }
 
       case "DELETE_TODO":
@@ -41,7 +35,9 @@ function todoReducer(state, action) {
           todos: state.todos.filter(todo => todo.id !== action.payload)
         }
     case "SET_LOADING":
-        return {...state, loading: action. payload}
+        return {...state, loading: true}
+    case "SET_ERROR":
+      return {...state, error: action.payload, loading: false}
     default:
       return state
   }
