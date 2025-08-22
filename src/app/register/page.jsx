@@ -13,7 +13,7 @@ export default function RegisterPage() {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
-			const res = await fetch("http://localhost:4000/api/user/create", {
+			const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/user/create`, {
 				method: "POST",
 				headers: { "Content-Type": "application/json" },
 				body: JSON.stringify(form),

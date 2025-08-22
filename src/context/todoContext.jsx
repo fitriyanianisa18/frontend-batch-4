@@ -17,7 +17,7 @@ export const TodoProvider = ({children}) => {
 			dispatch({type: "SET_LOADING"})
 
 			try {
-				const res = await fetch('http://localhost:4000/api/todo/todos');
+				const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/todo/todos`);
 				const {data} = await res.json()
 
 				dispatch({type: "SET_TODOS", payload: data})
@@ -31,7 +31,7 @@ export const TodoProvider = ({children}) => {
 	//add todos
 	const addTodo = async text => {
 		try {
-			const res = await fetch("http://localhost:4000/api/todo/create", {
+			const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/todo/create`, {
 				method: "POST",
 				headers: {"Content-Type": "application/json"},
 				body: JSON.stringify({text})
